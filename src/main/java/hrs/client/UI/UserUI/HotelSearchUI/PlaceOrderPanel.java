@@ -51,8 +51,6 @@ public class PlaceOrderPanel extends CommonPanel {
 	 */
 	private static final long serialVersionUID = 3247142230539015939L;
 
-	private static final String PlaceOrderPanel = null;
-
 	private static int JL_HEIGHT = 40;// 所有标签的高度均为40
 	private static int JL_WIDTH = 126;// 标签的宽度均为105
 	private static int TEXT_H = 30;// 输入域高度为30

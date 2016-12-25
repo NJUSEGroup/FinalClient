@@ -84,12 +84,16 @@ public class UserFrame extends JFrame{
 		}
 		
 	}
+	
+	//显示订单管理界面
 	public void showOrder() {
 		orderInfoPanel = new OrderInfoPanel(userVO);
 		cardPanel.add("orderInfoPanel",orderInfoPanel);
 		card.show(cardPanel, "orderInfoPanel");
 		
 	}
+	
+	//显示用户信息界面
 	public void showUserInfo(){
 		userInfoPanel = new UserInfoPanel(userVO);
 		userInfoPanel.setFrame(this);
@@ -97,18 +101,21 @@ public class UserFrame extends JFrame{
 		card.show(cardPanel, "userInfoPanel");
 	}
 
+	//显示信用记录界面
 	public void showCredit() {
 		creditInfoPanel = new CreditInfoPanel(username);
 		cardPanel.add("creditInfoPanel",creditInfoPanel);
 		card.show(cardPanel, "creditInfoPanel");
 	}
 
+	//显示搜索酒店界面
 	public void searchHotel() {
 		hotelPanel = new HotelPanel(userVO);
 		cardPanel.add("hotelPanel",hotelPanel);
 		card.show(cardPanel, "hotelPanel");
 	}
 
+	//显示历史酒店信息界面
 	public void showHotel() {
 		hotelInfoPanel = new HotelInfoPanel(userVO);
 		cardPanel.add("hotelInfoPanel",hotelInfoPanel);

@@ -130,20 +130,20 @@ public class UserInfoPanel extends CommonPanel {
 
 	private void setButton() {
 		HMSBlueButton cancelJB = new HMSBlueButton("取消");
-		cancelJB.setBounds(560, 500, 150, 60);
+		cancelJB.setBounds(558, 520, 122, 40);
 		cancelJB.addActionListener(new CancelListener(this));
 		this.add(cancelJB);
 
 		HMSBlueButton confirmJB = new HMSBlueButton("确认");
-		confirmJB.setBounds(800, 500, 150, 60);
-		confirmJB.addActionListener(new ConfirmListener(this, user));
+		confirmJB.setBounds(759, 520, 130, 40);
+		confirmJB.addActionListener(new ConfirmListener(this));
 		this.add(confirmJB);
 	}
 
 	/*
 	 * 从数据库获得真实姓名，生日，联系方式，企业，信用值
 	 */
-	public void getInfo() {
+	private void getInfo() {
 
 		userTextField.setText(user.username);
 		userTextField.setEnabled(false);
@@ -198,25 +198,31 @@ public class UserInfoPanel extends CommonPanel {
 		this.add(passwordJL);
 	}
 
-	public String getUsername() {
+	private String getUsername() {
 		System.out.println(userTextField.getText());
 		return userTextField.getText();
 	}
 
-	public String getEnterprise() {
+	private String getEnterprise() {
 
 		return enterpriseField.getText();
 	}
 
-	public String getPhone() {
+	private String getPhone() {
 		return contactTextField.getText();
 	}
 
-	public String getRealName() {
+	private String getRealName() {
 		return nameTextField.getText();
 	}
 
 	public void update() {
+		//若用户没有确认，不修改信息
+		int result = JOptionPane.showConfirmDialog(null, "是否确认修改信息？", "提示", JOptionPane.YES_NO_OPTION);
+		if (result != JOptionPane.YES_OPTION) {
+			return;
+		}
+		
 		user.birthDate = dateChoosePanel.getDate();
 		System.out.println(dateChoosePanel.getDate());
 		user.username = getUsername();
@@ -236,6 +242,7 @@ public class UserInfoPanel extends CommonPanel {
 				"信息修改成功", "成功", JOptionPane.PLAIN_MESSAGE,JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	//刷新界面
 	public void refresh() {
 		frame.showUserInfo();
 	}

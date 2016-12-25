@@ -24,6 +24,7 @@ import hrs.common.Controller.LoginController.ILoginController;
 import hrs.common.Exception.UserService.UserExistedException;
 import hrs.common.VO.UserVO;
 import hrs.common.util.type.UserType;
+import javax.swing.JLabel;
 
 public class RegisterPanel extends JPanel {
 
@@ -58,7 +59,7 @@ public class RegisterPanel extends JPanel {
 	 */
 	public RegisterPanel(LoginFrame frame) {
 		this.frame = frame;
-		setSize(508,420);
+		setSize(462,400);
 		setLayout(null);
 		setBackground(Color.white);
 		init();
@@ -106,7 +107,7 @@ public class RegisterPanel extends JPanel {
 		phoneJL.setBounds(START_X, START_Y+JL_HEIGHT*6+10, JL_WIDTH, JL_HEIGHT);
 		add(phoneJL);
 		
-		CommonLabel enterpriseJL = new CommonLabel("企业名称");
+		CommonLabel enterpriseJL = new CommonLabel("企业名称*");
 		enterpriseJL.setFont(smallF);
 		enterpriseJL.setBounds(START_X, START_Y+JL_HEIGHT*7+10, JL_WIDTH, JL_HEIGHT);
 		add(enterpriseJL);
@@ -160,18 +161,22 @@ public class RegisterPanel extends JPanel {
 	}
 	private void setButton() {
 		HMSGrayButton cancelJB = new HMSGrayButton("取消");
-		cancelJB.setBounds(80, START_Y+JL_HEIGHT*8+20, 120, 50);
+		cancelJB.setBounds(91, 268, 99, 30);
 		cancelJB.addActionListener(new CancelJBListener(this));
 		add(cancelJB);
 		
 		HMSBlueButton loginJB = new HMSBlueButton("确定");
-		loginJB.setBounds(220, START_Y+JL_HEIGHT*8+20, 120, 50);
+		loginJB.setBounds(259, 268, 110, 30);
 		loginJB.addActionListener(new RegisterJBListener(this));
 		add(loginJB);
 		
+		JLabel label = new JLabel("  （带星号为必填项）");
+		label.setBounds(150, 316, 190, 18);
+		add(label);
+		
 	}
 	public void cancel() {
-		frame.showLogin();
+		frame.showRegister();
 	}
 	
 	public void register() {
@@ -244,5 +249,4 @@ public class RegisterPanel extends JPanel {
 		}
 		
 	}
-
 }

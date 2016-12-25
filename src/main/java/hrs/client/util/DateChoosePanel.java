@@ -81,7 +81,7 @@ public class DateChoosePanel extends JPanel {
 	}
 	public void setCurrent(){
 		yearBox.setSelectedItem(currentTm.get(Calendar.YEAR));
-		monthBox.setSelectedItem(currentTm.get(Calendar.MONTH));
+		monthBox.setSelectedItem(currentTm.get(Calendar.MONTH)+1);
 		dayBox.setSelectedItem(currentTm.get(Calendar.DATE));
 	}
 

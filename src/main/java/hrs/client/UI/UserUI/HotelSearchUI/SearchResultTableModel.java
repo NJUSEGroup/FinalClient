@@ -15,21 +15,12 @@ import hrs.common.VO.HotelVO;
 import hrs.common.util.type.OrderStatus;
 
 public class SearchResultTableModel implements TableModel {
-	private ResourceBundle rb = ResourceBundle.getBundle("orderStatus", Locale.getDefault());
+	
 	private List<HotelVO> hotels;
 
 	public SearchResultTableModel(List<HotelVO> hotels) {
+		
 		this.hotels = hotels;
-
-		// allInfo = new ArrayList<>();
-		// Iterator<Entry<HotelVO, List<RoomVO>>> iter =
-		// hotels.entrySet().iterator();
-		// while (iter.hasNext()) {
-		// @SuppressWarnings("rawtypes")
-		// Map.Entry entry = (Map.Entry) iter.next();
-		// HotelVO key = (HotelVO) entry.getKey();
-		// allInfo.add(key);
-		// }
 
 	}
 
@@ -46,7 +37,7 @@ public class SearchResultTableModel implements TableModel {
 
 	@Override
 	public String getColumnName(int columnIndex) {
-		// TODO Auto-generated method stub
+		
 		String[] l = { "酒店名称", "酒店地址", "星级", "评分" ,"价格区间"};
 		return l[columnIndex];
 	}

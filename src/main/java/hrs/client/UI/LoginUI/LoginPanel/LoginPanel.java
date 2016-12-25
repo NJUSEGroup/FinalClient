@@ -48,8 +48,6 @@ public class LoginPanel extends JPanel {
 	private int JL_HEIGHT = 50;
 	private int TEXT_WIDTH = 200;
 	private int TEXT_HEIGHT = 30;
-	private int START_X = 0;
-	private int START_Y = 30;
 	private LoginFrame frame;
 
 	/**
@@ -57,7 +55,7 @@ public class LoginPanel extends JPanel {
 	 */
 	public LoginPanel(LoginFrame frame) {
 		this.frame = frame;
-		setSize(508, 420);
+		setSize(464, 401);
 		setLayout(null);
 		setBackground(Color.white);
 		init();
@@ -73,12 +71,12 @@ public class LoginPanel extends JPanel {
 
 	private void setButton() {
 		HMSGrayButton cancelJB = new HMSGrayButton("取消");
-		cancelJB.setBounds(80, START_Y+JL_HEIGHT*4, 120, 50);
+		cancelJB.setBounds(80, 255, 112, 37);
 		cancelJB.addActionListener(new CancelJBListener(this));
 		add(cancelJB);
 		
 		HMSBlueButton loginJB = new HMSBlueButton("确定");
-		loginJB.setBounds(220, START_Y+JL_HEIGHT*4, 120, 50);
+		loginJB.setBounds(236, 255, 112, 37);
 		loginJB.addActionListener(new LoginJBListener(this));
 		add(loginJB);
 		
@@ -99,14 +97,14 @@ public class LoginPanel extends JPanel {
 		accountType.setFont(font);
 		accountType.addItem("用户");
 		accountType.addItem("工作人员");
-		accountType.setBounds(START_X + JL_WIDTH + 30, START_Y + (JL_HEIGHT - TEXT_HEIGHT) / 2, TEXT_WIDTH,
+		accountType.setBounds(175, 40, TEXT_WIDTH,
 				TEXT_HEIGHT);
 		accountType.setFocusable(false);;
 		add(accountType);
 
 		accountField = new JTextField();
 		accountField.setFont(font);
-		accountField.setBounds(START_X + JL_WIDTH + 30, START_Y + (JL_HEIGHT - TEXT_HEIGHT) / 2 + JL_HEIGHT, TEXT_WIDTH,
+		accountField.setBounds(175, 100, TEXT_WIDTH,
 				TEXT_HEIGHT);
 		add(accountField);
 		accountField.requestFocus();
@@ -121,7 +119,7 @@ public class LoginPanel extends JPanel {
 
 		passwordField = new JPasswordField();
 		passwordField.setFont(font);
-		passwordField.setBounds(START_X + JL_WIDTH + 30, START_Y + (JL_HEIGHT - TEXT_HEIGHT) / 2 + JL_HEIGHT * 2,
+		passwordField.setBounds(175, 163,
 				TEXT_WIDTH, TEXT_HEIGHT);
 		passwordField.addKeyListener(new KeyAdapter() {
 			@Override
@@ -136,15 +134,15 @@ public class LoginPanel extends JPanel {
 
 	private void setLabel() {
 		CommonLabel accountTypeJL = new CommonLabel("用户类型");
-		accountTypeJL.setBounds(START_X, START_Y, JL_WIDTH, JL_HEIGHT);
+		accountTypeJL.setBounds(14, 30, JL_WIDTH, JL_HEIGHT);
 		add(accountTypeJL);
 
 		CommonLabel accountJL = new CommonLabel("用户名");
-		accountJL.setBounds(START_X, START_Y + JL_HEIGHT, JL_WIDTH, JL_HEIGHT);
+		accountJL.setBounds(14, 90, JL_WIDTH, JL_HEIGHT);
 		add(accountJL);
 
 		CommonLabel passwordJL = new CommonLabel("密码");
-		passwordJL.setBounds(START_X, START_Y + JL_HEIGHT * 2, JL_WIDTH, JL_HEIGHT);
+		passwordJL.setBounds(14, 153, JL_WIDTH, JL_HEIGHT);
 		add(passwordJL);
 	}
 

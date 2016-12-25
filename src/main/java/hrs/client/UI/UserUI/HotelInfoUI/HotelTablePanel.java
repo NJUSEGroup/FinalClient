@@ -85,7 +85,7 @@ public class HotelTablePanel extends CommonPanel {
 			hotels.add(key);
 		}
 		
-		table.setModel(new SearchResultTableModel(hotels));
+		table.setModel(new HotelTableModel(hotels));
 		add(scrollPane);
 		
 		setDetailTable();

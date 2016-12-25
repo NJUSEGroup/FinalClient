@@ -121,13 +121,13 @@ public class HotelSearchPanel extends CommonPanel {
 
 		detailJB = new HMSBlueButton("详细信息");
 		// detailJB.setFont(font);
-		detailJB.setBounds(774, 850, 120, 40);
+		detailJB.setBounds(734, 850, 120, 40);
 		detailJB.setEnabled(false);
 		detailJB.addActionListener(new DetailListener(this));
 		contentPane.add(detailJB);
 
 		orderJB = new HMSBlueButton("立即下单");
-		orderJB.setBounds(930, 850, 120, 40);
+		orderJB.setBounds(890, 850, 120, 40);
 		// orderJB.setFont(font);
 		orderJB.setEnabled(false);
 		orderJB.addActionListener(new OrderListener(this));
@@ -148,7 +148,7 @@ public class HotelSearchPanel extends CommonPanel {
 		
 		JScrollPane tableScrollPane = new JScrollPane();
 		tableScrollPane.setViewportView(table);
-		tableScrollPane.setBounds(12, 555, 1036, 232);
+		tableScrollPane.setBounds(12, 552, 1018, 235);
 		tableScrollPane.setBorder(BorderFactory.createLineBorder(new Color(145, 189, 214), 2));
 		tableScrollPane.getViewport().setBackground(new Color(211, 237, 249));
 		tableScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -204,15 +204,15 @@ public class HotelSearchPanel extends CommonPanel {
 		conditionGroup.add(starButton);
 		conditionGroup.add(priceButton);
 		
-		lowToHighButton = new JRadioButton("从高到低");
+		lowToHighButton = new JRadioButton("从低到高");
 		lowToHighButton.setBackground(UIConstants.JFRAME);
+		lowToHighButton.setSelected(true);
 		lowToHighButton.setFont(font);
 		lowToHighButton.setBounds(109, 57, 157, 27);
 		sortPanel.add(lowToHighButton);
 		
-		highToLowButton = new JRadioButton("从低到高");
+		highToLowButton = new JRadioButton("从高到低");
 		highToLowButton.setBackground(UIConstants.JFRAME);
-		highToLowButton.setSelected(true);
 		highToLowButton.setFont(font);
 		highToLowButton.setBounds(307, 56, 157, 27);
 		sortPanel.add(highToLowButton);
@@ -264,26 +264,38 @@ public class HotelSearchPanel extends CommonPanel {
 			newmap = controller.filterHotels(map, conditions);
 		}
 		
+		
 		//从高到低还是从低到高
-		boolean isDecrease = true;
-		if(lowToHighButton.isSelected()){
+		boolean isDecrease = false;
+		if(highToLowButton.isSelected()){
+			isDecrease = true;
+			System.out.println("从高到低");
+		}
+		else if(lowToHighButton.isSelected()){
 			isDecrease = false;
+			System.out.println("从低到高");
 		}
 		
 		//排序
 		OrderRule  rule;
+		
 		if(priceButton.isSelected()){
 			rule = OrderRule.Value;
 			newmap = controller.orderHotels(newmap, rule, isDecrease);
+			System.out.println("按价格排序");
 		}
 		else if (starButton.isSelected()){
 			rule = OrderRule.Star;
 			newmap = controller.orderHotels(newmap, rule, isDecrease);
+			System.out.println("按星级排序");
 		}
 		else if(scoreButton.isSelected()){
 			rule = OrderRule.Score;
 			newmap = controller.orderHotels(newmap, rule, isDecrease);
+			System.out.println("按评分排序");
 		}
+		
+		
 		
 		
 		List<HotelVO> hotels = new ArrayList<>();

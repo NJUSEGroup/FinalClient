@@ -63,7 +63,6 @@ public class LoginFrame extends JFrame {
 			UnsupportedLookAndFeelException {
 		setSize(WIDTH, HEIGHT);
 		backGroundPanel = new BGPanel();
-		
 		getContentPane().add(backGroundPanel);
 		backGroundPanel.setOpaque(true);
 		backGroundPanel.setLayout(null);

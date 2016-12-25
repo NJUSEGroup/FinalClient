@@ -15,4 +15,5 @@ public interface IUserOrderController {
 	void remark(OrderVO ordervo,int score,String evaluation);
 	void revoke(OrderVO ordervo);
 	void charge(UserVO user,int money);
+	List<OrderVO> findOrderByUsername(String username) throws OrderNotFoundException;
 }

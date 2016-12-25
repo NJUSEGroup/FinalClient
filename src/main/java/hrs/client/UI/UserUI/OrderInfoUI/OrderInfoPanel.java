@@ -58,7 +58,6 @@ public class OrderInfoPanel extends CommonPanel {
 	public void back() {
 		card.show(cardPanel, "orderShowPanel");
 		
-		
 	}
 
 }

@@ -42,6 +42,11 @@ public class StatusBoxListener implements ItemListener {
 				panel.setButtonUnable();
 			}
 			
+//			if(jb.getSelectedItem() == "所有订单"){
+//				panel.setStatus(null);
+//				panel.setButtonUnable();
+//			}
+			
 		}
 
 	}

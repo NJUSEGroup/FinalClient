@@ -23,7 +23,7 @@ public class DiscountTableModel implements TableModel {
 	List<Double> webDoubles;
 	List<Double> hotelDoubles;
 	private int webSize ;
-	private int hotelSize ;
+	
 	public DiscountTableModel(Map<WebDiscountVO,Double> webDiscountsAndDouble,Map<HotelDiscountVO,Double> hotelDiscountsAndDouble) {
 		this.webDiscountsAndDouble = webDiscountsAndDouble;
 		this.hotelDiscountsAndDouble = hotelDiscountsAndDouble;
@@ -55,7 +55,7 @@ public class DiscountTableModel implements TableModel {
 		}
 		
 		webSize = webDiscounts.size();
-		hotelSize = hotelDiscounts.size();
+		
 	}
 	
 	@Override
