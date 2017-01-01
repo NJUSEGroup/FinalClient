@@ -276,7 +276,7 @@ public class AddDiscountDialog extends JDialog {
 			JOptionPane.showMessageDialog(null, "折扣信息中不能包含非数字字符！", "错误", JOptionPane.WARNING_MESSAGE);
 		}
 		else if(sdiscount.length()>2){
-			JOptionPane.showMessageDialog(null, "折扣信息中只能包含一位或两位有效数字！", "错误", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "折扣信息中只能包含一位或两位数字！", "错误", JOptionPane.WARNING_MESSAGE);
 		}
 		else{
 			double discount = Double.valueOf(sdiscount);
@@ -285,7 +285,12 @@ public class AddDiscountDialog extends JDialog {
 				JOptionPane.showMessageDialog(null, "折扣信息不能为0！", "错误", JOptionPane.WARNING_MESSAGE);
 			}
 			else{
-				discount = discount / 100;
+				if(discount>=1&&discount<=9){
+					discount = discount / 10;
+				}
+				else{
+					discount = discount / 100;
+				}
 				String type = (String) jcbType.getSelectedItem();
 				HotelDiscountVO newDiscount = new HotelDiscountVO();
 				newDiscount.hotel = hotel;

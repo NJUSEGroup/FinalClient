@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -181,16 +180,7 @@ public class RoomUIPanel extends JPanel {
 	}
 	
 	/**
-	 * 修改房间
-	 * @param editRoom
-	 */
-	public void editRoom(RoomVO editRoom){
-		editRoom.hotel = theHotel;
-		roomController.updateRoom(editRoom);
-	}
-	
-	/**
-	 * 获取在表格中被选中需要修改的房间类型
+	 * 获取在表格中被选中的房间类型
 	 * @return
 	 */
 	public String getSelectedRoomType(){

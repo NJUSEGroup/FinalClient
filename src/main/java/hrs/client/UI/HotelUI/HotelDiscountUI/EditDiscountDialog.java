@@ -300,7 +300,12 @@ public class EditDiscountDialog extends JDialog {
 				JOptionPane.showMessageDialog(null, "折扣信息不能为0！", "错误", JOptionPane.WARNING_MESSAGE);
 			}
 			else{
-				discount = discount / 100;
+				if(discount>=1&&discount<=9){
+					discount = discount / 10;
+				}
+				else{
+					discount = discount / 100;
+				}
 				if(theDiscount.type==HotelDiscountType.Birthday){
 					theDiscount.discount = discount;
 			

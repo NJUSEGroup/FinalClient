@@ -63,6 +63,10 @@ public class CheckinDialog extends JDialog {
 	 * 初始化线下记录入住对话框
 	 */
 	public CheckinDialog(HotelVO hotel, OfflineRecordUIPanel jpRecord) {
+		init(hotel, jpRecord);
+	}
+	
+	public void init(HotelVO hotel, OfflineRecordUIPanel jpRecord){
 		this.jpRecord = jpRecord;
 		this.hotel = hotel;
 		setSize(531, 485);

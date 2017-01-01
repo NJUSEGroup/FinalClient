@@ -52,6 +52,10 @@ public class AddRoomDialog extends JDialog {
 	 * 初始化添加房间对话框
 	 */
 	public AddRoomDialog(List<RoomType> roomType, RoomUIPanel jpRoomUI) {
+		init(roomType, jpRoomUI);
+	}
+	
+	public void init(List<RoomType> roomType, RoomUIPanel jpRoomUI){
 		this.jpRoomUI = jpRoomUI;
 		setSize(450, 300);
 		setResizable(false);
