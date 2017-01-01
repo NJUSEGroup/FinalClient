@@ -13,7 +13,10 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 
 import hrs.client.UI.UserUI.Components.CommonLabel;
 import hrs.client.UI.UserUI.HotelSearchUI.Listener.CityBoxListener;
@@ -70,7 +73,7 @@ public class SearchPanel extends JPanel {
 	private DateChoosePanel checkInDate;// 入住时间选择面板
 	private DateChoosePanel checkOutDate;// 退房时间选择面板
 	private JComboBox<String> roomTypeBox;// 房间类型选框
-	private JTextField roomNumField;// 房间数量
+	private JSpinner roomNumField;// 房间数量
 	private TwoFieldPanel valueField;// 价格区间
 	private TwoFieldPanel scoreField;// 评分区间
 	private JComboBox<String> starBox;// 星级选框
@@ -120,9 +123,16 @@ public class SearchPanel extends JPanel {
 		checkOutDate.setBounds(RIGHTIN_X, JL_HEIGHT * 2+5, checkInDate.getWidth(), checkInDate.getHeight());
 		add(checkOutDate);
 
-		roomNumField = new JTextField();
+		roomNumField = new JSpinner();
 		roomNumField.setBounds(RIGHTIN_X, JL_HEIGHT * 3 + GAP, 150, TEXT_H);
 		roomNumField.setFont(font);
+		SpinnerModel spinnerModel =
+		         new SpinnerNumberModel(1, //initial value
+		            1, //min
+		            100, //max
+		            1);//step
+
+		roomNumField.setModel(spinnerModel);
 		add(roomNumField);
 
 		scoreField = new TwoFieldPanel();
@@ -322,13 +332,10 @@ public class SearchPanel extends JPanel {
 		}
 		if (hasOrderedBox.isSelected())
 			list.add(ifOrderedFilter);
-		if (roomNumField.getText().equals("")) {
-		} else {
-			 
-			 System.out.println(Integer.parseInt(roomNumField.getText()));
-			 roomNumFilter.setRoomNum(Integer.parseInt(roomNumField.getText()));
-			 list.add(roomNumFilter);
-		}
+
+		roomNumFilter.setRoomNum((Integer)roomNumField.getValue());
+		list.add(roomNumFilter);
+		
 		return list;
 	}
 

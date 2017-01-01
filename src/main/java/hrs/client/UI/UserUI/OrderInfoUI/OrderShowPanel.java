@@ -274,10 +274,10 @@ public class OrderShowPanel extends CommonPanel {
 		}
 	}
 
+	
 	public void setButtonUnable() {
 		revokeButton.setEnabled(false);
 		evalueButton.setEnabled(false);
 		detailButton.setEnabled(false);
-
 	}
 }

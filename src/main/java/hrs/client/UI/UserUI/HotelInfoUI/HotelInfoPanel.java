@@ -40,8 +40,8 @@ public class HotelInfoPanel extends ComNeedBackPanel {
 		hotelTablePanel = new HotelTablePanel(user,this);
 		cardPanel.add("hotelTable",hotelTablePanel);
 		card.show(cardPanel, "hotelTable");
-		
 	}
+	
 	public void showDetail(HotelVO hotel) {
 		detailPanel = new DetailPanel(hotel, user);
 		detailPanel.setPanel(this);

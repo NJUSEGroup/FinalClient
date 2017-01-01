@@ -16,11 +16,13 @@ import hrs.common.VO.UserVO;
  *
  */
 public class DetailPanel extends ComHotelDetail{
-//	private UserVO user;
-//	private HotelVO hotel;
-//	private ComNeedBackPanel panel;
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1768593098062417704L;
+
 	Font font = UIConstants.JLABEL_FONT;
-//	private HotelDetailInfoPanel detailInfoPanel;
+
 	public DetailPanel(HotelVO hotel, UserVO user) {
 		super(hotel, user);
 		init();

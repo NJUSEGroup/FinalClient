@@ -12,7 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
 import hrs.client.UI.UserUI.Components.CommonLabel;
@@ -20,13 +22,11 @@ import hrs.client.UI.UserUI.Components.CommonPanel;
 import hrs.client.UI.UserUI.Components.CommonTable;
 import hrs.client.UI.UserUI.HotelSearchUI.Listener.BackListener;
 import hrs.client.UI.UserUI.HotelSearchUI.Listener.OrderButtonListener;
-import hrs.client.UI.UserUI.HotelSearchUI.Listener.OrderDocumentListener;
 import hrs.client.UI.UserUI.HotelSearchUI.Listener.OrderItemListener;
 import hrs.client.UI.UserUI.HotelSearchUI.Listener.RoomNumBoxListener;
 import hrs.client.UI.UserUI.HotelSearchUI.Listener.RoomTypeBoxListener;
 import hrs.client.util.ControllerFactory;
 import hrs.client.util.HMSBlueButton;
-import hrs.client.util.RegExpHelper;
 import hrs.client.util.UIConstants;
 import hrs.common.Controller.UserController.IUserOrderController;
 import hrs.common.VO.HotelDiscountVO;
@@ -79,7 +79,7 @@ public class PlaceOrderPanel extends CommonPanel {
 	private JComboBox<String> hasChildBox;
 
 	private JComboBox<Integer> roomNumBox;
-	private JTextField peopleNumField;
+	private JSpinner peopleNumField;
 
 	private JLabel initValue;
 	private JLabel actualValue;
@@ -153,11 +153,17 @@ public class PlaceOrderPanel extends CommonPanel {
 		roomTypeBox.addItemListener(new RoomTypeBoxListener(this));
 		infoPanel.add(roomTypeBox);
 
-		peopleNumField = new JTextField("1");
-		peopleNumField.setText("1");
+		peopleNumField = new JSpinner();
+		SpinnerModel spinnerModel =
+		         new SpinnerNumberModel(1, //initial value
+		            1, //min
+		            100, //max
+		            1);//step
+
+		peopleNumField.setModel(spinnerModel);
 		peopleNumField.setFont(font);
 		peopleNumField.setBounds(RIGHTIN_X, JL_HEIGHT * 4 + GAP, JL_WIDTH, TEXT_H);
-		peopleNumField.getDocument().addDocumentListener(new OrderDocumentListener(this));
+		
 		infoPanel.add(peopleNumField);
 	}
 
@@ -357,10 +363,7 @@ public class PlaceOrderPanel extends CommonPanel {
 	 * 
 	 */
 	public void order() {
-		if (!isTextValid(peopleNumField.getText())) {
-			JOptionPane.showMessageDialog(null, "人数必须为数字!", "提示", JOptionPane.INFORMATION_MESSAGE);
-			return;
-		}
+		order.peopleNum = (Integer) peopleNumField.getValue();
 //		if(user.credit < 0){
 //			JOptionPane.showMessageDialog(null, "信用值不足，请充值！", "提示", JOptionPane.INFORMATION_MESSAGE);
 //			return;
@@ -393,21 +396,8 @@ public class PlaceOrderPanel extends CommonPanel {
 
 	}
 
-	public void changePeopleNum() {
-		// 修改订单入住人数
-		if (isTextValid(peopleNumField.getText())) {
-			order.peopleNum = Integer.parseInt(peopleNumField.getText());
-			return;
-		} else {
-			if (peopleNumField.getText().equals("")) {
-				return;
-			} else {
-				JOptionPane.showMessageDialog(null, "人数必须为数字!", "提示", JOptionPane.INFORMATION_MESSAGE);
-				return;
-			}
-		}
-	}
-
+	
+	
 	private RoomVO getSelectedRoom() {
 		String roomstr = (String) roomTypeBox.getSelectedItem();
 		RoomType roomType = RoomType.getRoomType(roomstr);
@@ -429,12 +419,6 @@ public class PlaceOrderPanel extends CommonPanel {
 		return roomVO.roomNum;
 	}
 
-	private boolean isTextValid(String str) {
-		if (RegExpHelper.matchOnlyNum(str)) {
-			return true;
-		} else
-			return false;
-	}
 
 	public void changeRoomNum() {
 		// 修改订单里房间数量
